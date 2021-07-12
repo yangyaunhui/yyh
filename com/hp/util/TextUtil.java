@@ -35,7 +35,7 @@ public class TextUtil {
     //存款
     public static  void doSaveMoney(){
         System.out.println("***************************");
-        System.out.println("*******请输入你想取的数目******");
+        System.out.println("*******请输入你想存的数目******");
         System.out.println("*******1.100   2.200*******");
         System.out.println("*******3.300   4.400*******");
         System.out.println("*******5.800   6.1000*******");
