@@ -253,12 +253,13 @@ public class CustomerService {
             Scanner sc = new Scanner(System.in);
             System.out.println("请输入您的取款金额：");
             int money = sc.nextInt();
-            if (money>0&&money<=currentCustomer.getMoney()){
+            if (money%100==0){
                 currentCustomer.setMoney(currentCustomer.getMoney()+money);
                 System.out.println("存款成功");
                 System.out.println("你的当前余额为："+currentCustomer.getMoney());
             }else {
                 System.out.println("输入错误");
+
             }
         }
     }
