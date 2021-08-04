@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <form action="">
+        用户名：<input type="text" name="usename" id="username"><br>
+        密码：<input type="password" name="password" id="">
+        <div>
+            密码1: <input type="text" name="p1">
+        </div>
+        <input type="button" value="点击" onclick="myclick()">
+    </form>
+    <input type="text" name="usename" id="">
+
+    <script>
+        function myclick(params) {
+            //1.给form标签找儿子，一共四个
+            $.each($("form"), function(index, value) {
+                console.log(value)
+                console.log($(this))
+                $(this).val("我是 所有的 form的子孙")
+            })
+            // 这是找儿子
+            //console.log($("form > input"))
+            //$("form > input").val("我是form的儿子们")
+            //找后代们
+            console.log($("form input"))
+            //$("form input").val("我是form的后代们")
+        }
+    </script>
+
+</body>
+</html>
