@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+        table{
+            width: 800px;
+            border-collapse: collapse;
+            
+        }
+        </style>
+</head>
+<body>
+    <table>
+        <tr>
+            
+            <td>姓名：<input id="realName" name="realName" type="text"></td>
+            <td>年龄：<input id="age" name="age" type="text"></td>
+            <td>地址：<input  id="address" name="address" type="text"></td>
+            <td><input value="添加" type="button" onclick="add()">
+                <input value="批量删除" type="button" onclick="delBatch()">
+            </td>
+        </tr>
+    </table>
+    <table border="1">
+        <thead>
+            <tr>
+                <td><input id="checkall" type="checkbox" onchange="checkAll(this)"></td>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>地址</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody id="mytb">
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>谢欣</td>
+                <td>30</td>
+                <td>郑州</td>
+                <td><a href="javascript:void(0)" onclick="del(this)">删除</a></td>
+            </tr>
+        </tbody>
+        
+    </table>
+
+    <script>
+        function add(btn) {
+            var $tds=$(btn).parent().siblings();
+            var name=$("input[type='text']").eq(0).val();
+            var age=$("input[type='text']").eq(1).val();
+            var dizhi=$("input[type='text']").eq(2).val();
+            var $tr=
+            $('<tr>'+
+                '<td><input type="checkbox"></td>'+
+                '<td>'+name+'</td>'+
+                '<td>'+age+'</td>'+
+                '<td>'+dizhi+'</td>'+
+                '<td><a href="javascript:void(0)" onclick="del(this)">删除</a></td>'+
+                '</tr>');
+                $('#mytb').append($tr);
+               
+        }
+        // 从购物车中删除物品
+        function del(btn) {
+            // 通过点击按钮,获取当前对象的父类的父类,就是<input>标签的父类<td>的父类<tr>,然后移除即可.
+            // <tr>是行 <td>是列
+            $(btn).parent().parent().remove();
+            
+        };
+        //批量删除
+			function delBatch(){
+				$("tbody input:checked").parent().parent().remove();
+                var checkallDom=$("#checkall");
+                var isTrue=checkallDom.prop("checked");
+                if(isTrue){
+                    checkallDom.prop('checked',false);
+                }
+            }
+            //全选
+        // function checkAll(btn) {
+        //     var checkBoxDom=$("#mytb tr td input");
+        //     $.each(checkBoxDom, function(index, value) {
+        //         $(this).prop('checked',true)
+        //     })
+        // }
+        //全选和全不选
+        function  checkAll(btn) {
+            var isTrue=$(btn).prop('checked');
+            var checkBoxDom=$("#mytb tr td input");
+            if(isTrue){
+                $.each(checkBoxDom, function(index, value) {
+                    $(this).prop('checked',true);
+                })
+            }else{
+                $.each(checkBoxDom, function(index, value) {
+                    $(this).prop('checked',false);
+                })
+            }
+        }
+           
+        
+    
+    </script>
+
+</body>
+</html>
